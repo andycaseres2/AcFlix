@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { UserAuth } from "../Context/AuthContext";
 import { db } from "../firebase";
 import { updateDoc, doc, onSnapshot } from "firebase/firestore";
 import { AiOutlineClose } from "react-icons/ai";
-import { async } from "@firebase/util";
 
 export const SavedShows = () => {
   const [movies, setMovies] = useState([]);
   const { user } = UserAuth();
+
   const slideLeft = () => {
     let slide = document.getElementById("slider");
     slide.scrollLeft = slide.scrollLeft - 500;
@@ -27,7 +26,7 @@ export const SavedShows = () => {
 
   const movieRef = doc(db, "users", `${user?.email}`);
   const deleteMovieShow = async (id) => {
-    const results = movies.filter((movie) => movie.id !== id);
+    const results = movies?.filter((movie) => movie.id !== id);
     await updateDoc(movieRef, {
       saveMovies: results,
     });
@@ -52,10 +51,10 @@ export const SavedShows = () => {
             "w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative group-hover:block"
           }
         >
-          {movies.map((movie, id) => (
+          {movies?.map((movie, id) => (
             <div
               key={id}
-              className="w-1/2 inline-block cursor-pointer relative p-2"
+              className="w-1/2 md:w-1/3 lg:w-1/4 inline-block cursor-pointer relative p-2"
             >
               <img
                 className="w-full h-auto block"

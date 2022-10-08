@@ -20,6 +20,7 @@ export const Movie = ({ movie }) => {
           id: movie.id,
           title: movie.title,
           img: movie.backdrop_path,
+          video: movie,
         }),
       });
     } else {
@@ -28,7 +29,7 @@ export const Movie = ({ movie }) => {
   };
 
   return (
-    <div className="w-1/2 inline-block cursor-pointer relative p-2">
+    <div className="w-1/2 md:w-1/3 lg:w-1/4 inline-block cursor-pointer relative p-2">
       <img
         className="w-full h-auto block"
         src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}

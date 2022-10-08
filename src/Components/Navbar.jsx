@@ -16,7 +16,7 @@ export const Navbar = () => {
     }
   };
   return (
-    <div className="flex p-4 z-[100] w-full items-center justify-between absolute">
+    <div className="flex py-4 px-8 z-[100] w-full items-center justify-between absolute">
       <Link to={"/"}>
         <h1 className="text-red-600 text-4xl font-bold cursor-pointer ">
           AcFlix
