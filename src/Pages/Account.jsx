@@ -1,4 +1,5 @@
 import React from "react";
+import { Footer } from "../Components/Footer";
 import { SavedShows } from "../Components/SavedShows";
 
 export const Account = () => {
@@ -16,6 +17,7 @@ export const Account = () => {
         </div>
       </div>
       <SavedShows />
+      <Footer arrow={true} />
     </>
   );
 };

@@ -20,7 +20,6 @@ export const Movie = ({ movie }) => {
           id: movie.id,
           title: movie.title,
           img: movie.backdrop_path,
-          video: movie,
         }),
       });
     } else {

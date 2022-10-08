@@ -11,9 +11,9 @@ export const Main = () => {
   const [saved, setSaved] = useState(false);
   const { user } = UserAuth();
   const movieID = doc(db, "users", `${user?.email}`);
-
   const [movies, setMovies] = useState([]);
   const movie = movies[Math.floor(Math.random() * movies.length)];
+
   useEffect(() => {
     axios
       .get(requests.requestPopular)

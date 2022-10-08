@@ -16,7 +16,7 @@ export const Navbar = () => {
     }
   };
   return (
-    <div className="flex py-4 px-8 z-[100] w-full items-center justify-between absolute">
+    <div className="flex py-4 px-8 md:py-6 md:px-14 z-[100] w-full items-center justify-between absolute">
       <Link to={"/"}>
         <h1 className="text-red-600 text-4xl font-bold cursor-pointer ">
           AcFlix
@@ -38,7 +38,9 @@ export const Navbar = () => {
       ) : (
         <div>
           <Link to={"/login"}>
-            <button className="text-white pr-4 font-semibold">Sing in</button>
+            <button className="text-white pr-4 md:pr-8 font-semibold">
+              Sing in
+            </button>
           </Link>
           <Link to={"/signup"}>
             <button className="bg-red-600 px-6 py-2 font-semibold rounded cursor-pointer text-white">
