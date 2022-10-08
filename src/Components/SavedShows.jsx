@@ -69,7 +69,7 @@ export const SavedShows = () => {
                   onClick={() => deleteMovieShow(movie.id)}
                   className="absolute text-gray-300 top-4 right-4"
                 >
-                  <AiOutlineClose />
+                  <AiOutlineClose className="h-6 w-6" />
                 </p>
               </div>
             </div>

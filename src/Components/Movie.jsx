@@ -36,19 +36,20 @@ export const Movie = ({ movie }) => {
         alt={movie?.title}
       />
       <div className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white">
-        <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
+        <p className="white-space-normal text-sm font-bold flex justify-center items-center w-full h-full text-center whitespace-pre-wrap">
           {movie?.title}
         </p>
+
         <p onClick={saveMovies}>
           {like ? (
             <FaHeart
               onClick={() => setLike(!like)}
-              className="absolute top-4 left-4 text-gray-300"
+              className="absolute top-4 left-4 text-gray-300 !w-6 !h-6"
             />
           ) : (
             <FaRegHeart
               onClick={() => setLike(!like)}
-              className="absolute top-4 left-4 text-gray-300"
+              className="absolute top-4 left-4 text-gray-300 !w-6 !h-6"
             />
           )}
         </p>

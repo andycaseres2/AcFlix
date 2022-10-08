@@ -5,26 +5,23 @@ import { requests } from "../Requests";
 
 export const DetailsMovie = () => {
   const { id } = useParams();
-  const [detailsMovie, setDetailsMovie] = useState();
+  const [detailsMovie, setDetailsMovie] = useState([]);
   useEffect(() => {
     axios
       .get(requests.requestPopular)
-      .then((response) => setDetailsMovie(response.data.results))
-      .error((error) => alert(error.message));
+      .then((response) => setDetailsMovie(response.data.results));
   }, []);
 
-  console.log(detailsMovie);
-
   const showDetailsMovie = detailsMovie.filter(
-    (detailsMovie) => detailsMovie.id === parseInt(id)
+    (detailMovie) => detailMovie.id === parseInt(id)
   );
-  console.log(showDetailsMovie);
+
   return (
     <>
       <div className="w-full text-white h-[400px]">
         <img
           className=" w-full h-full object-cover"
-          src={`https://image.tmdb.org/t/p/w500/${showDetailsMovie?.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/w500/${showDetailsMovie[0]?.backdrop_path}`}
           alt={showDetailsMovie?.title}
         />
         <div className="bg-black/60 fixed top-0 left-0 w-full h-[500px]"></div>

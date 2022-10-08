@@ -1,4 +1,5 @@
 import React from "react";
+import { Footer } from "../Components/Footer";
 import { Main } from "../Components/Main";
 import { SlideMovies } from "../Components/SlideMovies";
 import { requests } from "../Requests";
@@ -32,6 +33,7 @@ export const Home = () => {
         title={"Horror"}
         fetchUrl={requests.requestHorror}
       />
+      <Footer />
     </>
   );
 };

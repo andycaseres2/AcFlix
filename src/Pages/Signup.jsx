@@ -7,14 +7,20 @@ export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { user, signUp } = UserAuth();
+  const [errorPassword, setErrorPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await signUp(email, password);
-      navigate("/");
-    } catch (error) {
-      console.error(error);
+    if (password.length < 6) {
+      e.preventDefault();
+      return setErrorPassword("password must be at least 6 characters");
+    } else {
+      e.preventDefault();
+      try {
+        await signUp(email, password);
+        navigate("/");
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
   return (
@@ -30,6 +36,9 @@ export const Signup = () => {
           <div className="max-w-[450px] h-[600px] mx-auto bg-black/60 text-white rounded-lg">
             <div className="max-w-[320px] mx-auto py-16">
               <h1 className="text-3xl font-bold pb-4">Sign Up</h1>
+              {errorPassword ? (
+                <p className="p-3 bg-red-400 my-2">{errorPassword}</p>
+              ) : null}
               <form
                 onSubmit={handleSubmit}
                 className="flex flex-col w-full py-4 gap-5"

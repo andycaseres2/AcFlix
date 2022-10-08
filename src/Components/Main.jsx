@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { requests } from "../Requests";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../Context/AuthContext";
+import { db } from "../firebase";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 export const Main = () => {
   const navigate = useNavigate();
+  const [saved, setSaved] = useState(false);
+  const { user } = UserAuth();
+  const movieID = doc(db, "users", `${user?.email}`);
 
   const [movies, setMovies] = useState([]);
   const movie = movies[Math.floor(Math.random() * movies.length)];
@@ -21,7 +27,21 @@ export const Main = () => {
       return str;
     }
   };
-
+  const saveMovies = async (e) => {
+    if (user?.email) {
+      e.preventDefault();
+      setSaved(true);
+      await updateDoc(movieID, {
+        saveMovies: arrayUnion({
+          id: movie.id,
+          title: movie.title,
+          img: movie.backdrop_path,
+        }),
+      });
+    } else {
+      alert("Please log in to save a movie");
+    }
+  };
   return (
     <div className="w-full h-[550px] text-white ">
       <div className="w-full h-full">
@@ -36,11 +56,14 @@ export const Main = () => {
           <div className="my-4 px-4">
             <button
               onClick={() => navigate(`/movie/${movie.id}`)}
-              className="border bg-gray-300 text-black border-gray-300 py-2 px-5 font-semibold"
+              className="border bg-gray-300 text-black border-gray-300 py-2 px-5 font-semibold hover:bg-transparent hover:text-white"
             >
               Play
             </button>
-            <button className="border ml-4 text-white border-gray-300 py-2 px-5 font-semibold">
+            <button
+              onClick={saveMovies}
+              className="border ml-4 text-white border-gray-300 py-2 px-5 font-semibold hover:bg-red-700"
+            >
               Watch Later
             </button>
           </div>
